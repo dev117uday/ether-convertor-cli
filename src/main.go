@@ -1,6 +1,7 @@
 package main
 
 import (
+	"ether-convertor/convertor"
 	"ether-convertor/toolkit"
 	"fmt"
 	"os"
@@ -12,12 +13,13 @@ func main() {
 		toolkit.PrintHelp()
 		os.Exit(0)
 	}
-	if check := toolkit.CheckInputs(to,from,value); !check {
+	if check := toolkit.CheckInputs(&to,&from,&value); !check {
 		fmt.Printf("Exiting....")
 		os.Exit(1)
 	}
-	fmt.Println(to, from)
-	fmt.Printf("%s\n", value)
+	var answer float64
+	answer = convertor.ConvertorReceiver(&to,&from,&value)
+	fmt.Printf("%.18f\n",answer)
 }
 
 

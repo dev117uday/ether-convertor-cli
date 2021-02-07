@@ -9,12 +9,11 @@ import (
 // ParseFlags :  parse and return input flags
 func ParseFlags() (string, string, string, string) {
 	fmt.Println("Welcome to ether convertor")
-	to := flag.String("to", "wei", "Unit of value to convert to")
-	from := flag.String("from", "wei", "Unit of value to convert from")
+	to := flag.String("to", "convert.go", "Unit of value to convert to")
+	from := flag.String("from", "convert.go", "Unit of value to convert from")
 	value := flag.String("value", "", "Enter the value in this field")
 	help := flag.String("help", "printing help", "Print all the options present")
 	flag.Parse()
-
 	return *to, *from, *value, *help
 }
 
@@ -24,17 +23,17 @@ func PrintHelp() {
 }
 
 // CheckInputs : check all input for validity
-func CheckInputs(to, from, value string) bool {
-	if !valueCheck(to) {
+func CheckInputs(to, from, value *string) bool {
+	if !valueCheck(*to) {
 		fmt.Println("Incorrect `to` value")
 		return false
 	}
-	if !valueCheck(from) {
+	if !valueCheck(*from) {
 		fmt.Println("Incorrect `from` value")
 		return false
 	}
 
-	_, err := strconv.ParseFloat(value, 64)
+	_, err := strconv.ParseFloat(*value, 64)
 	if err != nil {
 		fmt.Println("Problem parsing `value`")
 		return false
