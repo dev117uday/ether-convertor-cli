@@ -8,18 +8,18 @@ import (
 )
 
 func main() {
-	to, from, value,help := toolkit.ParseFlags()
+
+	to, from, value, help := toolkit.ParseFlags()
 	if help == "help" {
 		toolkit.PrintHelp()
 		os.Exit(0)
 	}
-	if check := toolkit.CheckInputs(&to,&from,&value); !check {
+	if check := toolkit.CheckInputs(&to, &from, &value); !check {
 		fmt.Printf("Exiting....")
 		os.Exit(1)
 	}
-	var answer float64
-	answer = convertor.ConvertorReceiver(&to,&from,&value)
-	fmt.Printf("%.18f\n",answer)
+	answer := convertor.ConvertorReceiver(&to, &from, &value)
+	fmt.Printf("%.18f\n", answer)
 }
 
 
